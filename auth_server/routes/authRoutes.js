@@ -3,14 +3,18 @@ const mongoose = require('mongoose')
 const router = express.Router();
 const Admin = mongoose.model('Admin');
 
-router.post('/signup',(req,res)=>{
+router.post('/signup',async(req,res)=>{
     console.log(req.body)
 
-    const {username,password} = req.body
-    const admin = new Admin({username,password});
-    admin.save();
+    const {username,password,role} = req.body
 
-    res.send('hello')
+    try{
+        const admin = new Admin({username,password,role});
+        await admin.save();
+        res.send('create succeed')
+    }catch(err){
+        res.status(422).send(err.message)
+    }   
 })
 
 module.exports = router
