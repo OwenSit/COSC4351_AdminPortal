@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const adminSchema = new mongoose.Schema({
+const salesSchema = new mongoose.Schema({
     rolename:{
         type:String,
         required:true
@@ -11,4 +11,4 @@ const adminSchema = new mongoose.Schema({
     }
 })
 
-mongoose.model('Admin',adminSchema);
+mongoose.model('Sales',salesSchema);

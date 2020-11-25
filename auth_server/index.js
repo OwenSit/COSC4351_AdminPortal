@@ -5,7 +5,13 @@ const app = express()
 const PORT = 3000
 const {mogoUri} = require('./keys')
 
+require('./models/Account');
 require('./models/Admin');
+require('./models/Finance');
+require('./models/Hr');
+require('./models/Sales');
+require('./models/Support');
+require('./models/Technology');
 
 const authRoutes = require('./routes/authRoutes')
 app.use(bodyParser.json())
