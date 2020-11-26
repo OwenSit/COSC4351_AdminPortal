@@ -1,11 +1,7 @@
 const mongoose = require('mongoose');
 
 const technologySchema = new mongoose.Schema({
-    rolename:{
-        type:String,
-        required:true
-    },
-    links:{
+    linkname:{
         type:String,
         required:true
     }

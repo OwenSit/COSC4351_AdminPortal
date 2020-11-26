@@ -10,7 +10,6 @@ require('./models/Admin');
 require('./models/Finance');
 require('./models/Hr');
 require('./models/Sales');
-require('./models/Support');
 require('./models/Technology');
 
 const authRoutes = require('./routes/authRoutes')

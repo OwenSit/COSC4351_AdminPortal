@@ -6,7 +6,6 @@ const Admin = mongoose.model('Admin');
 const Finance = mongoose.model('Finance');
 const Hr = mongoose.model('Hr');
 const Sales = mongoose.model('Sales');
-const Support = mongoose.model('Support');
 const Technology = mongoose.model('Technology');
 
 router.post('/signup',async(req,res)=>{
@@ -26,10 +25,10 @@ router.post('/signup',async(req,res)=>{
 router.post('/admin',async(req,res)=>{
     console.log(req.body)
 
-    const {rolename,links} = req.body
+    const {linkname} = req.body
 
     try{
-        const admin = new Admin({rolename,links});
+        const admin = new Admin({linkname});
         await admin.save();
         res.send('create Admin links succeed')
     }catch(err){
@@ -40,10 +39,10 @@ router.post('/admin',async(req,res)=>{
 router.post('/finance',async(req,res)=>{
     console.log(req.body)
 
-    const {rolename,links} = req.body
+    const {linkname} = req.body
 
     try{
-        const finance = new Finance({rolename,links});
+        const finance = new Finance({linkname});
         await finance.save();
         res.send('create Finance links succeed')
     }catch(err){
@@ -54,10 +53,10 @@ router.post('/finance',async(req,res)=>{
 router.post('/hr',async(req,res)=>{
     console.log(req.body)
 
-    const {rolename,links} = req.body
+    const {linkname} = req.body
 
     try{
-        const hr = new Hr({rolename,links});
+        const hr = new Hr({linkname});
         await hr.save();
         res.send('create Hr links succeed')
     }catch(err){
@@ -68,26 +67,12 @@ router.post('/hr',async(req,res)=>{
 router.post('/sales',async(req,res)=>{
     console.log(req.body)
 
-    const {rolename,links} = req.body
+    const {linkname} = req.body
 
     try{
-        const sales = new Sales({rolename,links});
+        const sales = new Sales({linkname});
         await sales.save();
         res.send('create Sales links succeed')
-    }catch(err){
-        res.status(422).send(err.message)
-    }   
-})
-
-router.post('/support',async(req,res)=>{
-    console.log(req.body)
-
-    const {rolename,links} = req.body
-
-    try{
-        const support = new Support({rolename,links});
-        await support.save();
-        res.send('create Support links succeed')
     }catch(err){
         res.status(422).send(err.message)
     }   
@@ -96,10 +81,10 @@ router.post('/support',async(req,res)=>{
 router.post('/technology',async(req,res)=>{
     console.log(req.body)
 
-    const {rolename,links} = req.body
+    const {linkname} = req.body
 
     try{
-        const technology = new Technology({rolename,links});
+        const technology = new Technology({linkname});
         await technology.save();
         res.send('create Technology links succeed')
     }catch(err){
