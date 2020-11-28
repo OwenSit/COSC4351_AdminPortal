@@ -8,6 +8,8 @@ target 'auth_app' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
   target 'auth_appTests' do
     inherit! :complete
     # Pods for testing
