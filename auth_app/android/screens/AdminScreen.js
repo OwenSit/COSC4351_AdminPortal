@@ -26,10 +26,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 // import {accessibilityProps} fro m 'react-native-paper/lib/typescript/src/components/MaterialCommunityIcon';
 
-const AdminScreen = (props) => {
-  const [username, setName] = useState('');
-  const [password, setPassword] = useState('');
-
+const SalesScreen = (props) => {
   return (
     <>
       <KeyboardAvoidingView behavior="position">
@@ -70,4 +67,4 @@ const AdminScreen = (props) => {
   );
 };
 
-export default AdminScreen;
+export default SalesScreen;
