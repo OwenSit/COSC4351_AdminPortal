@@ -37,7 +37,7 @@ const HomeScreen = () => {
             marginTop: 10,
             textAlign: 'center',
           }}>
-          Welcome to The Admin Protal,
+          Welcome to The Admin Portal,
         </Text>
         <Text>{'     '}</Text>
         <Text
