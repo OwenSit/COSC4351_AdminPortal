@@ -27,9 +27,6 @@ import {
 // import {accessibilityProps} fro m 'react-native-paper/lib/typescript/src/components/MaterialCommunityIcon';
 
 const FinanceScreen = (props) => {
-  const [username, setName] = useState('');
-  const [password, setPassword] = useState('');
-
   return (
     <>
       <KeyboardAvoidingView behavior="position">
