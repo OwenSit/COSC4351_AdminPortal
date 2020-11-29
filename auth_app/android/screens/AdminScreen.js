@@ -37,11 +37,10 @@ const AdminScreen = (props) => {
         <Text
           style={{
             fontSize: 25,
-            marginLeft: 18,
             marginTop: 10,
             textAlign: 'center',
           }}>
-          Welcome to The Admin Page
+          Welcome, Admin
         </Text>
         <Text>{'     '}</Text>
         <Text style={{fontSize: 25, textAlign: 'center'}}>
