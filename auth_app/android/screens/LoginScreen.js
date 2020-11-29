@@ -31,10 +31,18 @@ const LoginScreen = (props) => {
   const [password, setPassword] = useState('');
 
   sendCred = () => {
-    fetch('http://10.0.2.2:3000/signup')
+    fetch('http://10.0.2.2:3000/', {
+      method: 'POST',
+      headers: {
+        'content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        testMes: username,
+      }),
+    })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(JSON.stringify(data));
       });
   };
 
@@ -49,7 +57,7 @@ const LoginScreen = (props) => {
             marginTop: 10,
             textAlign: 'center',
           }}>
-          Welcome to The Admin Portal
+          Welcome to The Admin Protal
         </Text>
         <Text>{'     '}</Text>
         <Text style={{fontSize: 25, textAlign: 'center'}}>
@@ -75,12 +83,42 @@ const LoginScreen = (props) => {
           theme={{colors: {primary: 'green'}}}
           onChangeText={(text) => setPassword(text)}
         />
-        <Text>{'     '}</Text>
+        {/* <Text>{'     '}</Text> */}
         <Button
           mode="contained"
           style={{marginLeft: 18, marginRight: 18, marginTop: 18}}
           onPress={() => sendCred()}>
           Login
+        </Button>
+        <Button
+          mode="contained"
+          style={{marginLeft: 18, marginRight: 18, marginTop: 18}}
+          onPress={() => props.navigation.navigate('AdminPage')}>
+          To AdminScreen
+        </Button>
+        <Button
+          mode="contained"
+          style={{marginLeft: 18, marginRight: 18, marginTop: 18}}
+          onPress={() => props.navigation.navigate('FinancePage')}>
+          To FinanceScreen
+        </Button>
+        <Button
+          mode="contained"
+          style={{marginLeft: 18, marginRight: 18, marginTop: 18}}
+          onPress={() => props.navigation.navigate('SalesPage')}>
+          To SalesScreen
+        </Button>
+        <Button
+          mode="contained"
+          style={{marginLeft: 18, marginRight: 18, marginTop: 18}}
+          onPress={() => props.navigation.navigate('HrPage')}>
+          To HrScreen
+        </Button>
+        <Button
+          mode="contained"
+          style={{marginLeft: 18, marginRight: 18, marginTop: 18}}
+          onPress={() => props.navigation.navigate('TechPage')}>
+          To TechScreen
         </Button>
       </KeyboardAvoidingView>
     </>
