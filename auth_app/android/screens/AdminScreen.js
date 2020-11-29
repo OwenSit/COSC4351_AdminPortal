@@ -1,4 +1,3 @@
-
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -25,8 +24,12 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+// import {accessibilityProps} fro m 'react-native-paper/lib/typescript/src/components/MaterialCommunityIcon';
 
-const AdminScreen = () => {
+const AdminScreen = (props) => {
+  const [username, setName] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <>
       <KeyboardAvoidingView behavior="position">
@@ -38,9 +41,34 @@ const AdminScreen = () => {
             marginTop: 10,
             textAlign: 'center',
           }}>
-          Welcome to The Admin Portal,
+          Welcome to The Admin Page
         </Text>
+        <Text>{'     '}</Text>
+        <Text style={{fontSize: 25, textAlign: 'center'}}>
+          {'Available Links:'}
+        </Text>
+        <Text>{'     '}</Text>
+        <Button
+          mode="contained"
+          style={{marginLeft: 18, marginRight: 18, marginTop: 18}}
+          onPress={() => console.log('Link to Manage User Accounts')}>
+          Manage User Accounts
+        </Button>
+        <Button
+          mode="contained"
+          style={{marginLeft: 18, marginRight: 18, marginTop: 18}}
+          onPress={() => console.log('Link to Assign Roles')}>
+          Assign Roles
+        </Button>
+        <Button
+          mode="contained"
+          style={{marginLeft: 18, marginRight: 18, marginTop: 18}}
+          onPress={() => console.log('Link to Help Desk')}>
+          Help Desk
+        </Button>
       </KeyboardAvoidingView>
     </>
   );
 };
+
+export default AdminScreen;
