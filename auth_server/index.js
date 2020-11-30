@@ -12,6 +12,7 @@ require('./models/Hr');
 require('./models/Sales');
 require('./models/Technology');
 
+const requireToken = require('./middleware/requireToken')
 const authRoutes = require('./routes/authRoutes')
 app.use(bodyParser.json())
 app.use(authRoutes)
@@ -29,7 +30,9 @@ mongoose.connection.on("error",(err)=>{
     console.log("Error!!! ",err)
 })
 
-
+app.get('/',requireToken,(req,res)=>{
+    res.send({username:req.account.username})
+})
 
 app.listen(PORT,()=>{
     console.log('server running '+PORT)

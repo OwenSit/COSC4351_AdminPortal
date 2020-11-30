@@ -1,5 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const jwt = require('jsonwebtoken')
+const {jwtkey} = require('../keys')
 const router = express.Router();
 const Account = mongoose.model("Account");
 const Admin = mongoose.model("Admin");
@@ -9,18 +11,38 @@ const Sales = mongoose.model("Sales");
 const Technology = mongoose.model("Technology");
 
 router.post("/signup", async (req, res) => {
-  console.log(req.body);
 
   const { username, password, role } = req.body;
 
   try {
     const account = new Account({ username, password, role });
     await account.save();
-    res.send("create new account succeed");
+    const token = jwt.sign({userId:account._id},jwtkey)
+    res.send({token})
   } catch (err) {
-    res.status(422).send(err.message);
+    return res.status(422).send(err.message);
   }
 });
+
+router.post("/login", async(req,res) =>{{
+  const{username,password} = req.body
+  if(!username||!password){
+    return res.status(422).send({errpr:"must provide username and password"});
+  }
+  const account = await Account.findOne({username})
+  if(!account){
+    return res.status(422).send({errpr:"username is incorrect!"});
+  }
+
+  try{
+    await account.comparePassword(password);    
+    const token = jwt.sign({userId:account._id},jwtkey)
+    res.send({token})
+  }catch(err){
+      return res.status(422).send({error :"password is incorrect!"})
+  }
+  
+}})
 
 router.post("/admin", async (req, res) => {
   console.log(req.body);
