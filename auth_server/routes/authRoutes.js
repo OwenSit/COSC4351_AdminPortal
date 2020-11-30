@@ -25,22 +25,44 @@ router.post("/signup", async (req, res) => {
 
 router.post("/showLinks", async (req, res) => {
   const { role } = req.body;
-
   try {
     if (role == "Admin") {
-      // var links = await Admin.find(linkname: );
-      console.log(links);
-      res.send(links);
+      Admin.find({}, { linkname: 1, _id: 0 }, function (err, links) {
+        if (err) return handleError(err);
+        console.log(links);
+        res.send(links);
+      });
+    } else if (role == "Finance") {
+      Finance.find({}, { linkname: 1, _id: 0 }, function (err, links) {
+        if (err) return handleError(err);
+        console.log(links);
+        res.send(links);
+      });
+    } else if (role == "Hr") {
+      Hr.find({}, { linkname: 1, _id: 0 }, function (err, links) {
+        if (err) return handleError(err);
+        console.log(links);
+        res.send(links);
+      });
+    } else if (role == "Sales") {
+      Sales.find({}, { linkname: 1, _id: 0 }, function (err, links) {
+        if (err) return handleError(err);
+        console.log(links);
+        res.send(links);
+      });
+    } else if (role == "Technology") {
+      Technology.find({}, { linkname: 1, _id: 0 }, function (err, links) {
+        if (err) return handleError(err);
+        console.log(links);
+        res.send(links);
+      });
     }
-    // const token = jwt.sign({ userId: account._id }, jwtkey);
-    // res.send({ token });
   } catch (err) {
-    return res.status(422).send(err.message);
+    res.status(422).send(err.message);
   }
 });
 
 router.post("/findRole", async (req, res) => {
-  // console.log(req.body);
   const { name } = req.body;
   try {
     Account.find({ username: name }, "role", function (err, roles) {
