@@ -31,20 +31,36 @@ const LoginScreen = (props) => {
   const [password, setPassword] = useState('');
 
   sendCred = () => {
-    fetch('http://10.0.2.2:3000/login', {
+    fetch('http://10.0.2.2:3000/findRole', {
       method: 'POST',
       headers: {
         'content-Type': 'application/json',
       },
       body: JSON.stringify({
-        "username": username,
-        "password": password
+        name: username,
       }),
     })
-    .then((res) => res.text())
-    .then((data) => {
-      console.log(data);
-    });
+      .then((res) => res.text())
+      .then((data) => {
+        console.log(data);
+        switch (data) {
+          case "ADMIN":
+            props.navigation.navigate('AdminPage')
+            break;
+          case "FINANCE_ADMIN":
+            props.navigation.navigate('FinancePage')
+            break;
+          case "SALES_ADMIN":
+            props.navigation.navigate('SalesPage')
+            break;
+          case "HR_ADMIN":
+            props.navigation.navigate('HrPage')
+            break;
+          case "TECH_ADMIN":
+            props.navigation.navigate('TechPage')
+            break;
+        }
+      });
   };
 
   return (
