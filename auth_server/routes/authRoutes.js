@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const jwt = require('jsonwebtoken')
-const {jwtkey} = require('../keys')
+const jwt = require("jsonwebtoken");
+const { jwtkey } = require("../keys");
 const router = express.Router();
 const Account = mongoose.model("Account");
 const Admin = mongoose.model("Admin");
@@ -11,38 +11,67 @@ const Sales = mongoose.model("Sales");
 const Technology = mongoose.model("Technology");
 
 router.post("/signup", async (req, res) => {
-
   const { username, password, role } = req.body;
 
   try {
     const account = new Account({ username, password, role });
     await account.save();
-    const token = jwt.sign({userId:account._id},jwtkey)
-    res.send({token})
+    const token = jwt.sign({ userId: account._id }, jwtkey);
+    res.send({ token });
   } catch (err) {
     return res.status(422).send(err.message);
   }
 });
 
+router.post("/showLinks", async (req, res) => {
+  const { role } = req.body;
+
+  try {
+    if (role == "Admin") {
+      // var links = await Admin.find(linkname: );
+      console.log(links);
+      res.send(links);
+    }
+    // const token = jwt.sign({ userId: account._id }, jwtkey);
+    // res.send({ token });
+  } catch (err) {
+    return res.status(422).send(err.message);
+  }
+});
+
+router.post("/findRole", async (req, res) => {
+  // console.log(req.body);
+  const { name } = req.body;
+  try {
+    Account.find({ username: name }, "role", function (err, roles) {
+      if (err) return handleError(err);
+      console.log(roles[0].role);
+      res.send(roles[0].role);
+    });
+  } catch (err) {
+    res.status(422).send(err.message);
+  }
+});
+
 router.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    return res
+      .status(422)
+      .send({ errpr: "must provide username and password" });
+  }
+  const account = await Account.findOne({ username });
+  if (!account) {
+    return res.status(422).send({ error: "username is incorrect!" });
+  }
 
-  const{username,password} = req.body;
-  if(!username||!password){
-    return res.status(422).send({errpr:"must provide username and password"});
+  try {
+    await account.comparePassword(password);
+    const token = jwt.sign({ userId: account._id }, jwtkey);
+    res.send({ token });
+  } catch (err) {
+    return res.status(422).send({ error: "password is incorrect!" });
   }
-  const account = await Account.findOne({username})
-  if(!account){
-    return res.status(422).send({error:"username is incorrect!"});
-  }
-
-  try{
-    await account.comparePassword(password);    
-    const token = jwt.sign({userId:account._id},jwtkey);
-    res.send({token});
-  }catch(err){
-      return res.status(422).send({error :"password is incorrect!"});
-  }
-  
 });
 
 router.post("/admin", async (req, res) => {
