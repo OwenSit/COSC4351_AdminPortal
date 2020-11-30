@@ -38,6 +38,7 @@ const LoginScreen = (props) => {
       },
       body: JSON.stringify({
         name: username,
+        pwd: password,
       }),
     })
       .then((res) => res.text())

@@ -9,6 +9,7 @@ const Finance = mongoose.model("Finance");
 const Hr = mongoose.model("Hr");
 const Sales = mongoose.model("Sales");
 const Technology = mongoose.model("Technology");
+const bcrypt = require('bcrypt')
 
 router.post("/signup", async (req, res) => {
   const { username, password, role } = req.body;
@@ -63,12 +64,29 @@ router.post("/showLinks", async (req, res) => {
 });
 
 router.post("/findRole", async (req, res) => {
-  const { name } = req.body;
+  const { name, pwd } = req.body;
   try {
-    Account.find({ username: name }, "role", function (err, roles) {
+    Account.find({ username: name }, "password", function (err, passwords) {
       if (err) return handleError(err);
-      console.log(roles[0].role);
-      res.send(roles[0].role);
+      console.log(passwords[0].password);
+      bcrypt.compare(pwd,passwords[0].password,(err,isMatch) => {
+        if (err) return handleError(err);
+        if (isMatch) {
+          console.log("Correct Password")
+          try {
+            Account.find({ username: name }, "role", function (err, roles) {
+              if (err) return handleError(err);
+              console.log(roles[0].role);
+              res.send(roles[0].role);
+            });
+          } catch (err) {
+            res.status(422).send(err.message);
+          }
+        } else {
+          console.log("Incorrect Password")
+          res.send("Incorrect Password");
+        }
+      });
     });
   } catch (err) {
     res.status(422).send(err.message);
