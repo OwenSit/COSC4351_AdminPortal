@@ -44,20 +44,20 @@ const LoginScreen = (props) => {
       .then((data) => {
         console.log(data);
         switch (data) {
-          case "ADMIN":
-            props.navigation.navigate('AdminPage')
+          case 'ADMIN':
+            props.navigation.navigate('AdminPage');
             break;
-          case "FINANCE_ADMIN":
-            props.navigation.navigate('FinancePage')
+          case 'FINANCE_ADMIN':
+            props.navigation.navigate('FinancePage');
             break;
-          case "SALES_ADMIN":
-            props.navigation.navigate('SalesPage')
+          case 'SALES_ADMIN':
+            props.navigation.navigate('SalesPage');
             break;
-          case "HR_ADMIN":
-            props.navigation.navigate('HrPage')
+          case 'HR_ADMIN':
+            props.navigation.navigate('HrPage');
             break;
-          case "TECH_ADMIN":
-            props.navigation.navigate('TechPage')
+          case 'TECH_ADMIN':
+            props.navigation.navigate('TechPage');
             break;
         }
       });
@@ -106,36 +106,6 @@ const LoginScreen = (props) => {
           style={{marginLeft: 18, marginRight: 18, marginTop: 18}}
           onPress={() => sendCred()}>
           Login
-        </Button>
-        <Button
-          mode="contained"
-          style={{marginLeft: 18, marginRight: 18, marginTop: 18}}
-          onPress={() => props.navigation.navigate('AdminPage')}>
-          To AdminScreen
-        </Button>
-        <Button
-          mode="contained"
-          style={{marginLeft: 18, marginRight: 18, marginTop: 18}}
-          onPress={() => props.navigation.navigate('FinancePage')}>
-          To FinanceScreen
-        </Button>
-        <Button
-          mode="contained"
-          style={{marginLeft: 18, marginRight: 18, marginTop: 18}}
-          onPress={() => props.navigation.navigate('SalesPage')}>
-          To SalesScreen
-        </Button>
-        <Button
-          mode="contained"
-          style={{marginLeft: 18, marginRight: 18, marginTop: 18}}
-          onPress={() => props.navigation.navigate('HrPage')}>
-          To HrScreen
-        </Button>
-        <Button
-          mode="contained"
-          style={{marginLeft: 18, marginRight: 18, marginTop: 18}}
-          onPress={() => props.navigation.navigate('TechPage')}>
-          To TechScreen
         </Button>
       </KeyboardAvoidingView>
     </>
