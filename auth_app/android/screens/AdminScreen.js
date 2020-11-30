@@ -26,6 +26,22 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 // import {accessibilityProps} fro m 'react-native-paper/lib/typescript/src/components/MaterialCommunityIcon';
 
+sendCred = () => {
+  fetch('http://10.0.2.2:3000/showLinks', {
+    method: 'POST',
+    headers: {
+      'content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      role: 'Admin',
+    }),
+  })
+    .then((res) => res.text())
+    .then((data) => {
+      console.log(data);
+    });
+};
+
 const AdminScreen = (props) => {
   return (
     <>
