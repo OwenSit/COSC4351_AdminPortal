@@ -31,13 +31,14 @@ const LoginScreen = (props) => {
   const [password, setPassword] = useState('');
 
   sendCred = () => {
-    fetch('http://10.0.2.2:3000/admin', {
+    fetch('http://10.0.2.2:3000/login', {
       method: 'POST',
       headers: {
         'content-Type': 'application/json',
       },
       body: JSON.stringify({
-        "linkname": username,
+        "username": username,
+        "password": password
       }),
     })
     .then((res) => res.text())

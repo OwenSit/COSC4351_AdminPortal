@@ -24,25 +24,26 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-router.post("/login", async(req,res) =>{{
-  const{username,password} = req.body
+router.post("/login", async (req, res) => {
+
+  const{username,password} = req.body;
   if(!username||!password){
     return res.status(422).send({errpr:"must provide username and password"});
   }
   const account = await Account.findOne({username})
   if(!account){
-    return res.status(422).send({errpr:"username is incorrect!"});
+    return res.status(422).send({error:"username is incorrect!"});
   }
 
   try{
     await account.comparePassword(password);    
-    const token = jwt.sign({userId:account._id},jwtkey)
-    res.send({token})
+    const token = jwt.sign({userId:account._id},jwtkey);
+    res.send({token});
   }catch(err){
-      return res.status(422).send({error :"password is incorrect!"})
+      return res.status(422).send({error :"password is incorrect!"});
   }
   
-}})
+});
 
 router.post("/admin", async (req, res) => {
   console.log(req.body);
