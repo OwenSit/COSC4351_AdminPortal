@@ -23,11 +23,11 @@ mongoose.connect(mogoUri,{
 })
 
 mongoose.connection.on('connected',()=>{
-    console.log("connected!!!")
+    console.log("connected!!!");
 })
 
 mongoose.connection.on("error",(err)=>{
-    console.log("Error!!! ",err)
+    console.log("Error!!! ",err);
 })
 
 app.get('/',requireToken,(req,res)=>{
@@ -35,5 +35,5 @@ app.get('/',requireToken,(req,res)=>{
 })
 
 app.listen(PORT,()=>{
-    console.log('server running '+PORT)
+    console.log('server running '+PORT);
 })
