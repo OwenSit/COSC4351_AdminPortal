@@ -25,6 +25,7 @@ mongoose.connect(mogoUri,{
 mongoose.connection.on('connected',()=>{
     console.log("connected!!!");
 })
+
 mongoose.connection.on("error",(err)=>{
     console.log("Error!!! ",err);
 })
@@ -32,6 +33,7 @@ mongoose.connection.on("error",(err)=>{
 app.get('/',requireToken,(req,res)=>{
     res.send({username:req.account.username})
 })
+
 app.listen(PORT,()=>{
     console.log('server running '+PORT);
 })
