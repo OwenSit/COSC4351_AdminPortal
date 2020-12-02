@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const technologySchema = new mongoose.Schema({
   linkname: {
     type: String,
