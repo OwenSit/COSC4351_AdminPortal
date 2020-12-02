@@ -83,7 +83,7 @@ router.post("/findRole", async (req, res) => {
             res.status(422).send(err.message);
           }
         } else {
-          console.log("Incorrect Password")
+          console.log("Incorrect Password");
           res.send("Incorrect Password");
         }
       });

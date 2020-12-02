@@ -20,18 +20,18 @@ const accountSchema = new mongoose.Schema({
 accountSchema.pre('save',function(next){
     const account = this;
     if(!account.isModified('password')){
-        return next()
+        return next();
     }
     bcrypt.genSalt(10,(err,salt)=>{
         if(err){
-            return next(err)
+            return next(err);
         }
      bcrypt.hash(account.password,salt,(err,hash)=>{
          if(err){
-             return next(err)
+             return next(err);
          }
          account.password = hash;
-         next()
+         next();
      })
 
     })
