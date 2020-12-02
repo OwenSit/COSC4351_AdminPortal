@@ -13,7 +13,6 @@ const bcrypt = require('bcrypt')
 
 router.post("/signup", async (req, res) => {
   const { username, password, role } = req.body;
-
   try {
     const account = new Account({ username, password, role });
     await account.save();
@@ -104,7 +103,6 @@ router.post("/login", async (req, res) => {
   if (!account) {
     return res.status(422).send({ error: "username is incorrect!" });
   }
-
   try {
     await account.comparePassword(password);
     const token = jwt.sign({ userId: account._id }, jwtkey);
@@ -116,9 +114,7 @@ router.post("/login", async (req, res) => {
 
 router.post("/admin", async (req, res) => {
   console.log(req.body);
-
   const { linkname } = req.body;
-
   try {
     const admin = new Admin({ linkname });
     await admin.save();
@@ -130,9 +126,7 @@ router.post("/admin", async (req, res) => {
 
 router.post("/finance", async (req, res) => {
   console.log(req.body);
-
   const { linkname } = req.body;
-
   try {
     const finance = new Finance({ linkname });
     await finance.save();
@@ -144,9 +138,7 @@ router.post("/finance", async (req, res) => {
 
 router.post("/hr", async (req, res) => {
   console.log(req.body);
-
   const { linkname } = req.body;
-
   try {
     const hr = new Hr({ linkname });
     await hr.save();
@@ -158,9 +150,7 @@ router.post("/hr", async (req, res) => {
 
 router.post("/sales", async (req, res) => {
   console.log(req.body);
-
   const { linkname } = req.body;
-
   try {
     const sales = new Sales({ linkname });
     await sales.save();
@@ -172,9 +162,7 @@ router.post("/sales", async (req, res) => {
 
 router.post("/technology", async (req, res) => {
   console.log(req.body);
-
   const { linkname } = req.body;
-
   try {
     const technology = new Technology({ linkname });
     await technology.save();
