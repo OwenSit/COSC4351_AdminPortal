@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const financeSchema = new mongoose.Schema({
     linkname:{
         type:String,
