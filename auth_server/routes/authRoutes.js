@@ -97,7 +97,7 @@ router.post("/findRole", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
-  
+
   if (!username || !password) {
     return res
       .status(422)
@@ -118,6 +118,7 @@ router.post("/login", async (req, res) => {
 
 router.post("/admin", async (req, res) => {
   console.log(req.body);
+
   const { linkname } = req.body;
   try {
     const admin = new Admin({ linkname });
@@ -130,6 +131,7 @@ router.post("/admin", async (req, res) => {
 
 router.post("/finance", async (req, res) => {
   console.log(req.body);
+
   const { linkname } = req.body;
   try {
     const finance = new Finance({ linkname });
@@ -142,6 +144,7 @@ router.post("/finance", async (req, res) => {
 
 router.post("/hr", async (req, res) => {
   console.log(req.body);
+
   const { linkname } = req.body;
   try {
     const hr = new Hr({ linkname });
@@ -154,6 +157,7 @@ router.post("/hr", async (req, res) => {
 
 router.post("/sales", async (req, res) => {
   console.log(req.body);
+
   const { linkname } = req.body;
   try {
     const sales = new Sales({ linkname });
@@ -166,6 +170,7 @@ router.post("/sales", async (req, res) => {
 
 router.post("/technology", async (req, res) => {
   console.log(req.body);
+  
   const { linkname } = req.body;
   try {
     const technology = new Technology({ linkname });
