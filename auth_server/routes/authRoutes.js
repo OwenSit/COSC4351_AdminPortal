@@ -13,6 +13,7 @@ const bcrypt = require('bcrypt')
 
 router.post("/signup", async (req, res) => {
   const { username, password, role } = req.body;
+
   try {
     const account = new Account({ username, password, role });
     await account.save();
@@ -25,6 +26,7 @@ router.post("/signup", async (req, res) => {
 
 router.post("/showLinks", async (req, res) => {
   const { role } = req.body;
+
   try {
     if (role == "Admin") {
       Admin.find({}, { linkname: 1, _id: 0 }, function (err, links) {
@@ -64,6 +66,7 @@ router.post("/showLinks", async (req, res) => {
 
 router.post("/findRole", async (req, res) => {
   const { name, pwd } = req.body;
+
   try {
     Account.find({ username: name }, "password", function (err, passwords) {
       if (err) return handleError(err);
@@ -94,6 +97,7 @@ router.post("/findRole", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
+  
   if (!username || !password) {
     return res
       .status(422)
